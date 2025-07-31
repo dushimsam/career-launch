@@ -1,9 +1,8 @@
+name = "worker-name"
+compatibility_date = "2025-07-31"
+
 [build]
 command = "yarn build"
 
-name = "worker-name"
-
-compatibility_date = "2025-07-31"
-
-[assets]
-directory = "./dist"
+[site]
+bucket = "./dist"
