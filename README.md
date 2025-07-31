@@ -47,7 +47,7 @@ Built with a modular, scalable architecture following NestJS best practices:
 
 1. **Clone and Install**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/dushimsam/career-launch.git
    cd career-launch
    yarn install
    ```
@@ -78,82 +78,23 @@ Built with a modular, scalable architecture following NestJS best practices:
 ### Required Environment Variables
 
 ```env
-# Database
-DB_HOST=your-postgres-host
+#Running environment
+NODE_ENV='development'
+APP_PORT=7700
+
+# Database Configuration
+DB_HOST='localhost'
 DB_PORT=5432
-DB_USER=your-username
-DB_PASS=your-password
-DB_NAME=your-database
+DB_USER=postgres
+DB_PASS=yourpassword
+DB_NAME=yourdbname
 
-# JWT Security
-JWT_SECRET=your-super-secret-key
-JWT_EXPIRES_IN=1h
-
-# GitHub OAuth
-GITHUB_CLIENT_ID=your-github-app-id
-GITHUB_CLIENT_SECRET=your-github-secret
-
-# Email Service
-SMTP_HOST=smtp.gmail.com
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-
-# SMS Service (Twilio)
-TWILIO_ACCOUNT_SID=your-twilio-sid
-TWILIO_AUTH_TOKEN=your-twilio-token
+# JWT Configuration
+JWT_SECRET='secret'
+JWT_EXPIRES_IN='24h'
+JWT_REFRESH_SECRET='secret'
+JWT_REFRESH_EXPIRES_IN='7d'
 ```
-
-## 📡 API Overview
-
-### Authentication Endpoints
-```http
-POST /api/v1/auth/register     # User registration
-POST /api/v1/auth/login        # Email/password login
-GET  /api/v1/auth/github       # GitHub OAuth login
-POST /api/v1/auth/verify-email # Email verification
-POST /api/v1/auth/forgot-password # Password reset
-```
-
-### Core Modules
-```http
-# User Management
-GET  /api/v1/users/profile
-PUT  /api/v1/users/profile
-POST /api/v1/users/upload-resume
-
-# Student Operations
-GET  /api/v1/students/applications
-POST /api/v1/students/portfolio-sync
-GET  /api/v1/students/recommendations
-
-# Company & Jobs
-POST /api/v1/companies/jobs
-GET  /api/v1/jobs
-POST /api/v1/jobs/:id/apply
-
-# University Admin
-POST /api/v1/universities/verify-student
-GET  /api/v1/universities/placements
-```
-
-## 🗄️ Database Schema
-
-### User Hierarchy (Table Inheritance)
-```sql
-Users (Abstract Base)
-├── Students (university, GPA, skills, portfolios)
-├── Recruiters (company, permissions, specializations)
-├── UniversityAdmins (university, access level)
-└── PlatformAdmins (system permissions)
-```
-
-### Core Entities
-- **Companies** - Profiles, verification, culture
-- **Jobs** - Postings, requirements, applications
-- **Applications** - Status tracking, interview scheduling
-- **Universities** - Student verification, placement stats
-- **Portfolios** - GitHub sync, project showcase
-- **Notifications** - Real-time updates
 
 ## 🧪 Testing
 
@@ -161,40 +102,8 @@ Users (Abstract Base)
 # Unit tests
 yarn test
 
-# Integration tests
-yarn test:e2e
-
-# Coverage report
-yarn test:cov
-
 # Watch mode
 yarn test:watch
-```
-
-## 🔐 Security Features
-
-- **Password Security** - Bcrypt hashing (12 rounds)
-- **JWT Authentication** - Short-lived access tokens + refresh tokens
-- **OAuth2 Integration** - GitHub authentication
-- **Rate Limiting** - Throttled API endpoints
-- **Input Validation** - Class-validator DTOs
-- **Security Headers** - Helmet middleware
-- **CORS Protection** - Configurable origins
-
-## 🚀 Deployment
-
-### Docker
-```bash
-docker build -t careerlaunch-backend .
-docker run -p 7700:7700 careerlaunch-backend
-```
-
-### Production Environment
-```env
-NODE_ENV=production
-JWT_SECRET=strong-production-secret-256-bits
-DB_SSL=true
-CORS_ORIGIN=https://your-frontend-domain.com
 ```
 
 ## 📊 Monitoring & Observability
@@ -204,29 +113,6 @@ CORS_ORIGIN=https://your-frontend-domain.com
 - **Metrics Ready** - Prometheus integration points
 - **Error Tracking** - Comprehensive error handling
 
-## 🛣️ Roadmap
-
-### Phase 1 (Current) ✅
-- User authentication & management
-- Database architecture
-- Core API endpoints
-- GitHub integration
-- Email/SMS notifications
-
-### Phase 2 (Next)
-- [ ] Job matching algorithm
-- [ ] Real-time notifications (WebSocket)
-- [ ] Advanced search & filtering
-- [ ] Analytics dashboard
-- [ ] Mobile app APIs
-
-### Phase 3 (Future)
-- [ ] AI-powered skill assessment
-- [ ] Video interview integration
-- [ ] Advanced reporting
-- [ ] Multi-language support
-- [ ] Mobile SDKs
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -235,32 +121,7 @@ CORS_ORIGIN=https://your-frontend-domain.com
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Development Guidelines
-- Follow NestJS conventions
-- Write comprehensive tests
-- Use TypeScript strict mode
-- Document APIs with Swagger
-- Follow SOLID principles
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙋‍♂️ Support
-
-- **Documentation**: Check `/api/docs` endpoint
-- **Issues**: GitHub Issues
-- **Discord**: [Join our community](link-to-discord)
-- **Email**: dev@careerlaunch.com
-
-## 🌟 Acknowledgments
-
-- Built with [NestJS](https://nestjs.com/)
-- Inspired by the African tech ecosystem
-- Supporting graduate employability across Africa
-
----
-
-<div align="center">
-  <strong>Empowering African Graduates, One Job Match at a Time</strong>
-</div>
