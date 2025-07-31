@@ -44,7 +44,7 @@ import { ExternalModule } from '../external/external.module';
     ExternalModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, LocalStrategy, GithubStrategy],
+  providers: [AuthService, JwtStrategy, LocalStrategy],
   exports: [AuthService, JwtModule],
 })
 export class AuthModule {}
